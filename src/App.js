@@ -2,6 +2,9 @@ import React from 'react';
 import Header from './Header';
 import IsLoadingAndError from './IsLoadingAndError';
 import Footer from './Footer';
+import { withAuth0 } from '@auth0/auth0-react';
+import Login from './Login';
+import MyFavoriteBooks from './MyFavoriteBooks';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,7 +18,13 @@ class App extends React.Component {
     return(
       <>
         <Router>
-          <IsLoadingAndError>
+          {!this.props.auth0.isAuthenticated &&
+            <Login />
+          }
+            <IsLoadingAndError>
+              {this.props.auth0.isAuthenticated &&
+                <MyFavoriteBooks />
+              }
             <Header />
               <Switch>
                 <Route exact path="/">
@@ -31,4 +40,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withAuth0(App);
