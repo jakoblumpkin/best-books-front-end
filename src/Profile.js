@@ -6,10 +6,13 @@ class Profile extends React.Component {
 
   render() {
     const { user } = this.props.auth0
-    console.log(this.user);
-    return <div>Hello, {user}</div>;
+    
+    return <div>
+        <img src={user.picture} alt={user.name} />
+        <h2>Hello, {user.name}</h2>
+        <p>{user.email}</p>
+      </div>;
   }
-
 }
 
 
