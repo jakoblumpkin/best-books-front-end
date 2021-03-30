@@ -10,6 +10,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import Profile from 'Profile';
 
 class App extends React.Component {
 
@@ -23,7 +24,10 @@ class App extends React.Component {
           }
             <IsLoadingAndError>
               {this.props.auth0.isAuthenticated &&
+              <>
+                <Profile/>
                 <MyFavoriteBooks />
+              </>
               }
             <Header />
               <Switch>
