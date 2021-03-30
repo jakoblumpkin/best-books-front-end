@@ -8,38 +8,42 @@ import MyFavoriteBooks from './MyFavoriteBooks';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
 } from "react-router-dom";
-import Profile from 'Profile';
+import Profile from './Profile';
 
 class App extends React.Component {
 
   render() {
+
     console.log('app', this.props)
-    return(
-      <>
-        <Router>
-          {!this.props.auth0.isAuthenticated &&
-            <Login />
-          }
-            <IsLoadingAndError>
-              {this.props.auth0.isAuthenticated &&
-              <>
-                <Profile/>
-                <MyFavoriteBooks />
-              </>
-              }
-            <Header />
+    return (
+      <Router>
+        {!this.props.auth0.isAuthenticated &&
+          <Switch>
+            <Route path="/" component={Login}/>
+            {/* <Profile/> */}
+          </Switch>
+        }
+        <IsLoadingAndError>
+          {this.props.auth0.isAuthenticated &&
+            <>
               <Switch>
-                <Route exact path="/">
-                  {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
-                </Route>
-                {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+                <Route path="/" component={MyFavoriteBooks}/>
+                <Route path="/profile" component={Profile}/>
               </Switch>
-            <Footer />
-          </IsLoadingAndError>
-        </Router>
-      </>
+            </>
+          }
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
+            </Route>
+            {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+          </Switch>
+          <Footer />
+        </IsLoadingAndError>
+      </Router>
     )
   }
 }
