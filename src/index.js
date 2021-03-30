@@ -6,7 +6,7 @@ import React from 'react';
       <Auth0Provider
         domain="dev-jessi.us.auth0.com"
         clientId="uCdrSfWrxVYvlnpXaRlcYS2QTMHFgfxi"
-        redirectUri='http://localhost:3000'
+        redirectUri='https://thirsty-jones-456a75.netlify.app/'
     >
       <App />
     </Auth0Provider>,
