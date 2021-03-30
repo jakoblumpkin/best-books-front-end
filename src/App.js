@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import IsLoadingAndError from './IsLoadingAndError';
+// import IsLoadingAndError from './IsLoadingAndError';
 import Footer from './Footer';
 import { withAuth0 } from '@auth0/auth0-react';
 import Login from './Login';
@@ -23,20 +23,23 @@ class App extends React.Component {
         {!this.props.auth0.isAuthenticated &&
           <Switch>
             <Route path="/" component={Login}/>
-            {/* <Profile/> */}
           </Switch>
         }
-        <IsLoadingAndError>
+        {/* <IsLoadingAndError> */}
           {this.props.auth0.isAuthenticated &&
             <>
               <Switch>
                 <Route path="/" component={MyFavoriteBooks}/>
-                <Route path="/profile" component={Profile}/>
+              </Switch>
+              <Switch>
+                <Route path="/profile">
+                  <Profile/>
+                </Route>
               </Switch>
             </>
           }
           <Footer />
-        </IsLoadingAndError>
+        {/* </IsLoadingAndError> */}
       </Router>
     )
   }
