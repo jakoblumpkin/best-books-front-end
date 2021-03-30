@@ -14,7 +14,7 @@ function LoginButton() {
 
   // const { name, hair } = obj;
 
-  return (
+  return !isAuthenticated && (
     <button onClick={loginWithRedirect}>Log in</button>
   );
 }

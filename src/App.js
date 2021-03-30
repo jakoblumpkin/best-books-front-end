@@ -19,6 +19,7 @@ class App extends React.Component {
     console.log('app', this.props)
     return (
       <Router>
+        <Header />
         {!this.props.auth0.isAuthenticated &&
           <Switch>
             <Route path="/" component={Login}/>
@@ -34,13 +35,6 @@ class App extends React.Component {
               </Switch>
             </>
           }
-          <Header />
-          <Switch>
-            <Route exact path="/">
-              {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
-            </Route>
-            {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
-          </Switch>
           <Footer />
         </IsLoadingAndError>
       </Router>
