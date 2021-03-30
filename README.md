@@ -25,3 +25,14 @@ This is an application that allows a user to login using their Google credential
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 [https://reactrouter.com/web/api/BrowserRouter](https://reactrouter.com/web/api/BrowserRouter)
 
+**Feature Timing**
+
+Name of feature: User Authentication with OAuth
+
+Estimate of time needed to complete: 5 hours
+
+Start time: 1:00pm
+
+Finish time: 7:00pm
+
+Actual time needed to complete: 6 hours
