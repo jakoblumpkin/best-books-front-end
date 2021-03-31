@@ -27,7 +27,10 @@ class BestBooks extends React.Component {
     return(
       this.state.books.map((book, i) => (
         <div key={i}>
-          {book.name}
+          Title: {book.name}<br></br>
+          Description: {book.description}<br></br>
+          Status: {book.status}<br></br>
+          <p>----------------</p>
         </div>
       ))
     )
