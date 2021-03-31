@@ -28,9 +28,9 @@ class BestBooks extends React.Component {
       <>
      {this.state.books.length > 0 && 
       this.state.books.forEach((book, i)=> {
-        return(<div key={i}>
-                  {book.name}
-                </div>);
+        <div key={i}>
+          {book.name}
+        </div>;
          })}
       </>
 
