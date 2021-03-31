@@ -25,12 +25,15 @@ class BestBooks extends React.Component {
 
   render() {
     return(
-      this.state.books.length > 0 && (
-      this.state.books.map((book, i) => (
-        <div key={i}>
-          {book.name}
-        </div>)
-      ))
+      <>
+     {this.state.books.length > 0 && 
+      this.state.books.forEach((book, i)=> {
+        return(<div key={i}>
+                  {book.name}
+                </div>);
+         })}
+      </>
+
     )
   }
 }
