@@ -6,7 +6,6 @@ import './myFavoriteBooks.css';
 
 class MyFavoriteBooks extends React.Component {
   render() {
-    console.log(this.props);
     return(
       <Jumbotron>
         <h1>My Favorite Books</h1>
