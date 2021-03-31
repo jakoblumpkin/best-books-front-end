@@ -6,7 +6,7 @@ import React from 'react';
       <Auth0Provider
         domain="dev-jessi.us.auth0.com"
         clientId="uCdrSfWrxVYvlnpXaRlcYS2QTMHFgfxi"
-        redirectUri={'http://localhost:3000'}
+        redirectUri={window.location.origin}
     >
       <App />
     </Auth0Provider>,
