@@ -7,13 +7,6 @@ function LoginButton() {
     loginWithRedirect,
   } = useAuth0();
 
-  // const obj = {
-  //   name: 'bob', 
-  //   hair: 'blue'
-  // }
-
-  // const { name, hair } = obj;
-
   return !isAuthenticated && (
     <button onClick={loginWithRedirect}>Log in</button>
   );

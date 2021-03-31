@@ -15,8 +15,7 @@ import Profile from './Profile';
 class App extends React.Component {
 
   render() {
-
-    console.log('app', this.props)
+    console.log('appprops', this.props);
     return (
       <Router>
         <Header />
@@ -29,7 +28,7 @@ class App extends React.Component {
           {this.props.auth0.isAuthenticated &&
             <>
               <Switch>
-                <Route path="/" component={MyFavoriteBooks}/>
+                <Route path="/" render={(props) => <MyFavoriteBooks user={this.props.auth0.user.email} isAuthed={true}/>}/>
               </Switch>
               <Switch>
                 <Route path="/profile">
