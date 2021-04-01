@@ -27,6 +27,7 @@ class BestBooks extends React.Component {
           Description: {book.description}<br></br>
           Status: {book.status}<br></br>
           <button onClick={() => this.props.deleteABook(i)}>Delete Book</button>
+          <button>Update Book</button>
           <p>----------------</p>
         </div>
       ))
