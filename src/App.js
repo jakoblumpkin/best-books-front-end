@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import IsLoadingAndError from './IsLoadingAndError';
 import Footer from './Footer';
 import { withAuth0 } from '@auth0/auth0-react';
@@ -13,6 +14,16 @@ import {
 import Profile from './Profile';
 
 class App extends React.Component {
+
+  // constructor(props){
+  //   super(props);
+  //   this.state={
+  //     books: [], 
+  //     name: '',
+  //     catName: ''
+  //   }
+  // }
+
 
   render() {
     console.log('appprops', this.props);
