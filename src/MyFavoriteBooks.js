@@ -6,6 +6,7 @@ import BestBooks from './BestBooks';
 import './myFavoriteBooks.css';
 import BookFormModal from './AddBook';
 import axios from 'axios';
+import UpdateForm from './UpdateForm';
 
 class MyFavoriteBooks extends React.Component {
 
@@ -59,6 +60,10 @@ class MyFavoriteBooks extends React.Component {
     }
   };
 
+  updateBook = (idx) => {
+    console.log(idx);
+  }
+
   render() {
     return(
       <>
@@ -72,6 +77,7 @@ class MyFavoriteBooks extends React.Component {
           {this.state.displayForm &&
           <BookFormModal updateBook={this.createABook} closeForm={this.closeForm}></BookFormModal>
           }
+          <UpdateForm/>
         </Jumbotron>
       </>
     )
