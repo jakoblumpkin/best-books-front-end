@@ -14,8 +14,16 @@ class MyFavoriteBooks extends React.Component {
     super(props);
     this.state={
       displayForm: false,
-      books: []
+      displayUpdateForm: false,
+      books: [],
+      selectedBook: {},
+      index: null,
+      title: '',
+      description: '',
+      status: ''
     }
+    this.handleChange=this.handleChange.bind(this);
+    this.handleSubmit=this.handleSubmit.bind(this);
   }
 
   updateBookList = (books) => {
@@ -30,10 +38,16 @@ class MyFavoriteBooks extends React.Component {
     this.setState({displayForm: false});
   };
 
+  openUpdateForm = () => {
+    this.setState({displayUpdateForm: true});
+  };
+
+  closeUpdateForm = () => {
+    this.setState({displayUpdateForm: false});
+  };
+
   deleteABook = async (index) => {
     try{
-      console.log('working?')
-    console.log('index', index);
     const newBookArray = this.state.books.filter((book, i) => {
       return parseInt(index) !== i;
     });
@@ -61,8 +75,45 @@ class MyFavoriteBooks extends React.Component {
   };
 
   updateBook = (idx) => {
-    console.log(idx);
+    this.setState({selectedBook: this.state.books[idx], index: idx});
   }
+
+  handleChange = (e) => {
+    e.preventDefault();
+    const name = e.target.name;
+    const value = e.target.value;
+    // console.log(name, value);
+    console.log(this.state.books[this.state.index]);
+    this.setState({[name]: value});
+  }
+
+
+  componentDidUpdate = async () => {
+    try {
+      console.log('update');
+      const SERVER = 'http://localhost:3001';
+      const getBooks = await axios.get(`${SERVER}/books`, { params: {email: this.props.user}})
+      this.updateBookList(getBooks.data);
+      //listen for handle submit from form, run this function again
+      //component did mount renders on change
+    }
+    catch(err){
+      console.log(err);
+    }
+  };
+
+  handleSubmit = async (e) => {
+      e.preventDefault();
+      try{
+      const SERVER = 'http://localhost:3001';
+      const putBook = await axios.put(`${SERVER}/books/${this.state.index}`, {email: this.props.user, name: this.state.title, description: this.state.description, status: this.state.status, id: this.state.index});
+      console.log(putBook);
+      // this.reRenderBestBooks();
+      }
+      catch(err){
+      console.log(err);
+      }
+  };
 
   render() {
     return(
@@ -72,12 +123,12 @@ class MyFavoriteBooks extends React.Component {
           <p>
             This is a collection of my favorite books
           </p>
-          <BestBooks books={this.state.books} updateBookList={this.updateBookList} deleteABook={this.deleteABook} email={this.props.user}/>
+          <BestBooks books={this.state.books} updateBookList={this.updateBookList} deleteABook={this.deleteABook} email={this.props.user} openUpdateForm={this.openUpdateForm} updateBook={this.updateBook}/>
           <Button onClick={this.openForm}>Add a Book</Button>
           {this.state.displayForm &&
           <BookFormModal updateBook={this.createABook} closeForm={this.closeForm}></BookFormModal>
           }
-          <UpdateForm/>
+          <UpdateForm displayUpdateForm={this.state.displayUpdateForm} closeUpdateForm={this.closeUpdateForm} selectedBook={this.state.selectedBook} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
         </Jumbotron>
       </>
     )

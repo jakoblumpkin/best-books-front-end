@@ -30,27 +30,29 @@ class BookFormModal extends React.Component {
 
   render(){
     return(
-      <Modal.Dialog>
-        <Modal.Header>
-          <Modal.Title>Add Book:</Modal.Title>
-        </Modal.Header>
+      <Modal show={true}>
+        <Modal.Dialog>
+          <Modal.Header>
+            <Modal.Title>Add Book:</Modal.Title>
+          </Modal.Header>
 
-        <Modal.Body>
-          <form onSubmit={(e) => this.handleSubmit(e)}>
-            <label>Title: </label>
-            <input name="title" onChange={this.handleChange}></input><br></br>
-            <label>Description: </label>
-            <input name="description" onChange={this.handleChange}></input><br></br>
-            <label>Status: </label>
-            <input name="status" onChange={this.handleChange}></input><br></br>
-            <button>Submit</button>
-          </form>
-        </Modal.Body>
+          <Modal.Body>
+            <form onSubmit={(e) => this.handleSubmit(e)}>
+              <label>Title: </label>
+              <input name="title" onChange={this.handleChange}></input><br></br>
+              <label>Description: </label>
+              <input name="description" onChange={this.handleChange}></input><br></br>
+              <label>Status: </label>
+              <input name="status" onChange={this.handleChange}></input><br></br>
+              <button>Submit</button>
+            </form>
+          </Modal.Body>
 
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.props.closeForm}>Close Form</Button>
-        </Modal.Footer>
-      </Modal.Dialog>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.props.closeForm}>Close Form</Button>
+          </Modal.Footer>
+        </Modal.Dialog>
+      </Modal>
     )
   }
 }
