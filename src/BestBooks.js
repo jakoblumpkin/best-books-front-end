@@ -1,8 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import UpdateForm from './UpdateForm';
 
 class BestBooks extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state={
+      displayUpdateForm: false,
+    }
+  }
 
   componentDidMount = async () => {
     console.log(this.props);
@@ -11,11 +18,19 @@ class BestBooks extends React.Component {
       const getBooks = await axios.get(`${SERVER}/books`, { params: {email: this.props.email}})
       console.log(getBooks);
       this.props.updateBookList(getBooks.data);
+      //listen for handle submit from form, run this function again
+      //component did mount renders on change
     }
     catch(err){
       console.log(err);
     }
   }
+
+
+  updateSelectedBook = (i) => {
+    this.props.openUpdateForm();
+    this.props.updateBook(i);
+  };
 
 
 
@@ -27,7 +42,7 @@ class BestBooks extends React.Component {
           Description: {book.description}<br></br>
           Status: {book.status}<br></br>
           <button onClick={() => this.props.deleteABook(i)}>Delete Book</button>
-          <button>Update Book</button>
+          <button onClick={() => this.updateSelectedBook(i)}>Update Book</button>
           <p>----------------</p>
         </div>
       ))
